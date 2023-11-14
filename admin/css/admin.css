@@ -1935,6 +1935,7 @@ select.es-form-control-lg:not([size]):not([multiple]) {
   position: absolute;
   right: 50px;
   top: 40px;
+  width: 70px;
 }
 @media screen and (max-width: 782px) {
   .es-tabs__wrapper .es-logo {

@@ -1,16 +1,15 @@
 <?php
 
 /**
- * Plugin Name:       Estatik
- * Plugin URI:        http://estatik.net
- * Description:       A simple version of Estatik Real Estate plugin for Wordpress.
- * Version:           4.1.0
- * Author:            Estatik
- * Author URI:        http://estatik.net
+ * Plugin Name:       Ipro
+ * Plugin URI:        https://www.iprodemo.co.uk/
+ * Description:       A simple version of Ipro Real Estate plugin for Wordpress.
+ * Version:           1.0.0
+ * Author:            Jasen
+ * Author URI:        https://www.iprodemo.co.uk/
  * Text Domain:       es
  * License:           GPL2
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Domain Path:       /languages
  */
 
 if ( ! defined( 'WPINC' ) ) {
@@ -29,16 +28,7 @@ define( 'ES_PLUGIN_CLASSES', dirname( ES_FILE ) . DS . 'includes' . DS . 'classe
 define( 'ES_PLUGIN_BASENAME', plugin_basename( __FILE__) );
 define( 'ESTATIK4', true );
 
-/**
- * Load plugin textdomain.
- *
- * @since 1.0.0
- */
-function es_load_textdomain() {
-	load_plugin_textdomain( 'es', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
-add_action( 'plugins_loaded', 'es_load_textdomain' );
 
-require_once ES_PLUGIN_CLASSES . 'class-estatik.php';
+require_once ES_PLUGIN_CLASSES . 'class-ipro.php';
 
-Estatik::get_instance();
+Ipro::get_instance();

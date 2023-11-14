@@ -21,6 +21,7 @@
 }
 .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-logo {
   right: 30px;
+  width: 70px;
 }
 .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form, .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content {
   flex: 1;

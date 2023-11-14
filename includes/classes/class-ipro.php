@@ -1,23 +1,23 @@
 <?php
 
 /**
- * Class Estatik
+ * Class Ipro
  *
  * Plugin initializer class.
  */
-class Estatik {
+class Ipro {
 
 	/**
 	 * Plugin instance.
 	 *
-	 * @var Estatik
+	 * @var Ipro
 	 */
 	protected static $_instance;
-	const VERSION = '4.1.0';
+	const VERSION = '1.0.0';
 	const TYPE = 'simple';
 
 	/**
-	 * Estatik constructor.
+	 * Ipro constructor.
 	 */
 	protected function __construct() {
 		$this->load_files();
@@ -66,16 +66,14 @@ class Estatik {
 			'google-auth' => ES_PLUGIN_CLASSES . 'auth' . DS . 'class-google-authentication.php',
 
 			'framework' => ES_PLUGIN_CLASSES . 'framework' . DS . 'framework.php',
-			'admin_logo_init' => ES_PLUGIN_CLASSES . 'class-estatik-logo.php',
+			'admin_logo_init' => ES_PLUGIN_CLASSES . 'class-ipro-logo.php',
 
 			'assets-init' => ES_PLUGIN_CLASSES . 'class-assets-init.php',
 			'auth-init' => ES_PLUGIN_CLASSES . 'class-auth-init.php',
-			'admin-init' => ES_PLUGIN_CLASSES . 'class-admin-init.php',
 
 			'entity-meta-box' => ES_PLUGIN_CLASSES . 'meta-boxes' . DS . 'class-entity-fields-meta-box.php',
 			'property-meta-box' => ES_PLUGIN_CLASSES . 'meta-boxes' . DS . 'class-property-fields-meta-box.php',
 
-			'dashboard-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-dashboard-page.php',
 			'settings-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-settings-page.php',
 			'fields-builder-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-fields-builder-page.php',
 			'terms-creator' => ES_PLUGIN_CLASSES . DS . 'data-manager' . DS . 'class-terms-creator.php',
@@ -131,8 +129,6 @@ class Estatik {
 			'new-user-info-email' => ES_PLUGIN_CLASSES . 'emails/class-new-user-info-email.php',
 			'new-user-registered-admin-email' => ES_PLUGIN_CLASSES . 'emails/class-new-user-registered-admin-email.php',
 			'reset-password-email' => ES_PLUGIN_CLASSES . 'emails/class-reset-password-email.php',
-
-			'polylang' => ES_PLUGIN_CLASSES . 'class-polylang-init.php',
 		) );
 
 		if ( ! empty( $files ) ) {

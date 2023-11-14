@@ -22,28 +22,17 @@ class Es_Admin_Menu {
 		$parent = 'es_dashboard';
 
 		$menu_pages = array(
-			'estatik' => array(
+			'ipro' => array(
 				'args' => array(
-					__( 'Estatik', 'es' ),
-					__( 'Estatik', 'es' ),
+					__( 'Ipro', 'es' ),
+					__( 'Ipro', 'es' ),
 					'manage_options',
 					$parent,
-					array( 'Es_Dashboard_Page', 'render' ),
-					ES_PLUGIN_URL . 'admin/images/logo.svg',
+                    array( 'Es_Settings_Page', 'render' ),
+					ES_PLUGIN_URL . 'admin/images/slogo.png',
 					'20.7'
 				),
 				'callback' => 'add_menu_page',
-			),
-			'dashboard' => array(
-				'args' => array(
-					$parent,
-					__( 'Dashboard', 'es' ),
-					__( 'Dashboard', 'es' ),
-					'manage_options',
-					'es_dashboard',
-					array( 'Es_Dashboard_Page', 'render' )
-				),
-				'callback' => 'add_submenu_page',
 			),
 			'my-listings' => array(
 				'args' => array(
@@ -86,47 +75,9 @@ class Es_Admin_Menu {
 					array( 'Es_Fields_Builder_Page', 'render' )
 				),
 				'callback' => 'add_submenu_page',
-			),
-			'settings' => array(
-				'args' => array(
-					$parent,
-					__( 'Settings', 'es' ),
-					__( 'Settings', 'es' ),
-					'manage_options',
-					'es_settings',
-					array( 'Es_Settings_Page', 'render' )
-				),
-				'callback' => 'add_submenu_page',
-			),
+			)
 		);
 
-		if ( ! es_is_demo_executed() ) {
-			$menu_pages['demo'] = array(
-				'args' => array(
-					$parent,
-					__( 'Demo content', 'es' ),
-					__( 'Demo content', 'es' ),
-					'manage_options',
-					'es_demo',
-					array( 'Es_Demo_Page', 'render' )
-				),
-				'callback' => 'add_submenu_page',
-			);
-		}
-
-		if ( es_need_migration() ) {
-			$menu_pages['migration'] = array(
-				'args' => array(
-					$parent,
-					__( 'Migration', 'es' ),
-					__( 'Migration', 'es' ),
-					'manage_options',
-					'es_migration',
-					array( 'Es_Migration_Page', 'render' )
-				),
-				'callback' => 'add_submenu_page',
-			);
-		}
 
 		$menu_pages = apply_filters( 'es_register_admin_pages_args', $menu_pages );
 

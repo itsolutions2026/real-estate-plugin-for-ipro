@@ -47,7 +47,7 @@ function es_admin_buyers_uri() {
 }
 
 /**
- * Return estatik plugin logo path.
+ * Return ipro plugin logo path.
  *
  * @return mixed
  */
@@ -168,7 +168,7 @@ function es_admin_settings_uri() {
 }
 
 /**
- * Return Estatik admin listings URI.
+ * Return ipro admin listings URI.
  *
  * @return string
  */
@@ -214,7 +214,7 @@ function es_need_migrate() {
 }
 
 /**
- * Return estatik logo markup.
+ * Return ipro logo markup.
  *
  * @return string;
  */
@@ -224,7 +224,7 @@ function es_get_logo() {
     do_action( 'es_before__logo' );
     do_action( 'es_before_logo' );
     echo "<div class='es-logo clearfix'><img src='" . es_logo_url() . "'><br>
-            <span class='es-version'>" . __( 'Ver', 'es-plugin' ) . ". " . Estatik::getVersion() .  "</span></div>";
+            <span class='es-version'>" . __( 'Ver', 'es-plugin' ) . ". " . Ipro::getVersion() .  "</span></div>";
     do_action( 'es_after_logo');
 
     return ob_get_clean();
@@ -1461,7 +1461,7 @@ function es_locate_template( $template_path, $context = 'front', $deprecated = n
 	$context = $context == 'front' ? ES_TEMPLATES : ES_ADMIN_TEMPLATES;
 	$base = $template_path;
 
-	$find[] = 'estatik/' . $template_path;
+	$find[] = 'ipro-listing/' . $template_path;
 	$find[] = $context . $template_path;
 
 	$template_path = locate_template( array_unique( $find ) );
@@ -1729,7 +1729,7 @@ function es_email_content( $template, $variables = array() ) {
 }
 
 /**
- * Add button above tinymce editor for build estatik shortcodes.
+ * Add button above tinymce editor for build ipro shortcodes.
  *
  * @param $editor_id
  *
@@ -1773,8 +1773,8 @@ function add_shortcode_builder_button( $editor_id ) {
             }
 	    </style>";
 
-	        echo "<a title='" . __( 'Estatik Shortcode Builder', 'es-plugin' ) . "' href='" . add_query_arg( $args, admin_url( 'admin-ajax.php' ) ) . "' class='js-es-shortcode-builder__link es-sb-btn' data-editor='{$editor_id}'>
-	        <img src='" . ES_ADMIN_IMAGES_URL . 'estatik.svg' . "' alt='" . __( 'Estatik Shortcode Builder', 'es-plugin' ) . "' width='30' height='auto'>
+	        echo "<a title='" . __( 'Ipro Shortcode Builder', 'es-plugin' ) . "' href='" . add_query_arg( $args, admin_url( 'admin-ajax.php' ) ) . "' class='js-es-shortcode-builder__link es-sb-btn' data-editor='{$editor_id}'>
+	        <img src='" . ES_ADMIN_IMAGES_URL . 'estatik.svg' . "' alt='" . __( 'Ipro Shortcode Builder', 'es-plugin' ) . "' width='30' height='auto'>
 	    </a>";
         }
     }

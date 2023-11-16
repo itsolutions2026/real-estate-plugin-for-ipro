@@ -534,10 +534,10 @@ add_action( 'get_avatar', 'es_get_avatar', 9999999, 5 );
  */
 function es_display_post_states( $states, $post ) {
     $pages = array(
-        'login_page_id' => __( 'Estatik Authentication', 'es' ),
-        'profile_page_id' => __( 'Estatik Profile', 'es' ),
-        'map_search_page_id' => __( 'Estatik Half map', 'es' ),
-        'search_results_page_id' => __( 'Estatik Search results', 'es' )
+        'login_page_id' => __( 'Ipro Authentication', 'es' ),
+        'profile_page_id' => __( 'Ipro Profile', 'es' ),
+        'map_search_page_id' => __( 'Ipro Half map', 'es' ),
+        'search_results_page_id' => __( 'Ipro Search results', 'es' )
     );
 
     foreach ( $pages as $key => $label ) {
@@ -578,13 +578,13 @@ if ( ! function_exists( 'es_powered_by' ) ) {
      * @return void
      */
     function es_powered_by() {
-        echo "<div class='es-powered content-font'>" . sprintf( __( 'Powered by %s' ), "<a target='_blank' href='https://estatik.net'>" . __( 'Estatik', 'es' ) . "</a>" ) . "</div>";
+        echo "<div class='es-powered content-font'>" . sprintf( __( 'Powered by %s' ), "<a target='_blank' href='https://ipro.co.uk'>" . __( 'Estatik', 'es' ) . "</a>" ) . "</div>";
     }
 }
-add_action( 'es_after_listings', 'es_powered_by' );
-add_action( 'es_after_single_content', 'es_powered_by' );
-add_action( 'es_after_authentication', 'es_powered_by' );
-add_action( 'es_after_profile', 'es_powered_by' );
+//add_action( 'es_after_listings', 'es_powered_by' );
+//add_action( 'es_after_single_content', 'es_powered_by' );
+//add_action( 'es_after_authentication', 'es_powered_by' );
+//add_action( 'es_after_profile', 'es_powered_by' );
 
 if ( ! function_exists( 'es_login_logo' ) ) {
 

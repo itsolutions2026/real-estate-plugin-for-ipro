@@ -196,7 +196,7 @@ if ( ! function_exists( 'es_locate_template' ) ) {
 		$context = ES_PLUGIN_PATH . DS . 'templates' . DS;
 		$base = $template_path;
 
-		$find[] = 'estatik4/' . $template_path;
+		$find[] = 'ipro-listing/' . $template_path;
 		$find[] = $context . $template_path;
 
 		$template_path = locate_template( array_unique( $find ) );
@@ -223,7 +223,6 @@ if ( ! function_exists( 'es_load_template' ) ) {
 	 *    Template variables list.
 	 */
 	function es_load_template( $template_path, $args = array() ) {
-
 		global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
 		$args = apply_filters( 'es_template_args', $args, $template_path );
 		extract( $args );

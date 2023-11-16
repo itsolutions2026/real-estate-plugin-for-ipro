@@ -71,11 +71,11 @@ class Es_Assets {
 		wp_register_script( 'es-select2', $common . '/select2/select2.full.min.js', array( 'jquery' ) );
 		wp_register_style( 'es-select2', $common . '/select2/select2.min.css'  );
 
-		wp_register_style( 'estatik-popup', $common . '/estatik-popup/estatik-popup.css' );
-		wp_register_script( 'estatik-popup', $common . '/estatik-popup/estatik-popup.js', array( 'jquery' ) );
+		wp_register_style( 'ipro-popup', $common . '/ipro-popup/ipro-popup.css' );
+		wp_register_script( 'ipro-popup', $common . '/ipro-popup/ipro-popup.js', array( 'jquery' ) );
 
-		wp_register_style( 'estatik-progress', $common . '/estatik-progress/estatik-progress.css' );
-		wp_register_script( 'estatik-progress', $common . '/estatik-progress/estatik-progress.js', array( 'jquery' ) );
+		wp_register_style( 'ipro-progress', $common . '/ipro-progress/ipro-progress.css' );
+		wp_register_script( 'ipro-progress', $common . '/ipro-progress/ipro-progress.js', array( 'jquery' ) );
 
 		wp_register_script( 'es-slick', $common . '/slick/slick-fixed.min.js', array( 'jquery' ) );
 		wp_register_style( 'es-slick', $common . '/slick/slick.min.css' );

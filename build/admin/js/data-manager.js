@@ -1,8 +1,8 @@
 ( function( $ ) {
     'use strict';
 
-    var tr = Estatik_Data_Manager.tr;
-    var nonce = Estatik_Data_Manager.nonce;
+    var tr = Ipro_Data_Manager.tr;
+    var nonce = Ipro_Data_Manager.nonce;
 
     /**
      * Load list items.

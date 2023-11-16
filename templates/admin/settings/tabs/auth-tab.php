@@ -109,31 +109,4 @@
             'type' => 'text',
         ) ); ?>
     </div>
-
-    <?php es_settings_field_render( 'is_agents_register_enabled', array(
-        'label' => __( 'Enable sign up form for agents', 'es' ),
-        'type' => 'switcher',
-        'pro' => true,
-        'attributes' => array(
-            'data-toggle-container' => '#es-agents-register-container',
-        ),
-    ) ); ?>
-
-    <div id="es-agents-register-container">
-        <?php es_settings_recommended_page_render( 'agent_register_page_id', array(
-            'page_name' => __( 'Agent registration', 'es' ),
-            'page_display_name' => __( 'Agent registration page', 'es' ),
-            'page_content' => '[es_authentication auth_item="agent-register-buttons"]'
-        ) );
-
-        es_settings_field_render( 'agent_register_title', array(
-            'label' => __( 'Title for agent sign up page', 'es' ),
-            'type' => 'text',
-        ) );
-
-        es_settings_field_render( 'agent_register_subtitle', array(
-            'label' => __( 'Subtitle for agent sign up page', 'es' ),
-            'type' => 'text',
-        ) ); ?>
-    </div>
 </div>

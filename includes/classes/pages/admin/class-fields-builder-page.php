@@ -498,9 +498,10 @@ class Es_Fields_Builder_Page {
 		$action = 'es_fields_builder_get_field_form';
 
 		if ( check_ajax_referer( $action , 'field_builder_nonce', false ) ) {
+
 			$machine_name = filter_input( INPUT_GET, 'machine_name' );
 			$section_machine_name = filter_input( INPUT_GET, 'section_machine_name' );
-			$field_builder = es_get_fields_builder_instance();
+			$field_builder = es_get_fields_builder_instance(true);
 			$sections_builder = es_get_sections_builder_instance();
 			$sections = $sections_builder::get_items( 'property' );
 			$sections = $sections ? wp_list_pluck( $sections, 'label', 'machine_name' ) : array();
@@ -511,7 +512,7 @@ class Es_Fields_Builder_Page {
 				'field' => $field_builder::get_item_by_machine_name( $machine_name ),
 				'sections' => $sections,
 				'fields_builder' => $field_builder,
-			) );
+			));
 		} else {
 			$response = es_ajax_invalid_nonce_response();
 			echo $response['message'];
@@ -598,8 +599,8 @@ class Es_Fields_Builder_Page {
     }
 
 	public static function enqueue_assets() {
-		wp_enqueue_style( 'es-fields-builder', plugin_dir_url( ES_FILE ) . 'admin/css/fields-builder.min.css', array( 'es-admin', 'estatik-popup' ) );
-		wp_enqueue_script( 'es-fields-builder', plugin_dir_url( ES_FILE ) . 'admin/js/fields-builder.min.js', array( 'jquery', 'es-admin', 'jquery-ui-sortable', 'estatik-popup', 'clipboard' ) );
+		wp_enqueue_style( 'es-fields-builder', plugin_dir_url( ES_FILE ) . 'admin/css/fields-builder.min.css', array( 'es-admin', 'ipro-popup' ) );
+		wp_enqueue_script( 'es-fields-builder', plugin_dir_url( ES_FILE ) . 'admin/js/fields-builder.min.js', array( 'jquery', 'es-admin', 'jquery-ui-sortable', 'ipro-popup', 'clipboard' ) );
 
 		wp_localize_script( 'es-fields-builder', 'Estatik_Fields_Builder', array(
 			'nonce' => array(

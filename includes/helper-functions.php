@@ -368,8 +368,9 @@ function es_field_builder_field_render( $field_key, $field_config, $field ) {
 		'attributes' => array(
 			'name' => "es_fields_builder[{$field_key}]"
 		),
-		'value'      => maybe_unserialize( $field[ $field_key ] ),
-	) );
+		'value'      => maybe_unserialize( !empty($field[ $field_key ])?$field[ $field_key ]:'' ),
+	));
+
 
 	foreach ( array( 'pro', 'premium' ) as $ver ) {
 		if ( ! empty( $field_config[ $ver ] ) ) {

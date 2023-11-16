@@ -144,18 +144,6 @@ $name_disabled = ! empty( $field['fb_settings']['disable_name_edit'] ); ?>
 	es_field_builder_field_render( 'search_support', array(
 		'type' => 'switcher',
 		'label' => __( 'Search support', 'es' ),
-	), $field );
-
-	es_field_builder_field_render( 'compare_support', array(
-		'type' => 'switcher',
-		'label' => __( 'Compare support', 'es' ),
-		'pro' => true,
-	), $field );
-
-	es_field_builder_field_render( 'mls_import_support', array(
-		'type' => 'switcher',
-		'label' => __( 'MLS import support', 'es' ),
-		'premium' => true,
 	), $field ); ?>
 
     <div style="text-align: center;">

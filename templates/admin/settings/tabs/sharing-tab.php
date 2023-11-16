@@ -21,9 +21,5 @@
         ) ); ?>
     </div>
 
-    <?php es_settings_field_render( 'is_pdf_enabled', array(
-        'label' => __( 'Enable sharing with PDF', 'es' ),
-        'type' => 'switcher',
-        'pro' => true,
-    ) ); ?>
+
 </div>

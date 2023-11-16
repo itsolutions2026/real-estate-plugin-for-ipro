@@ -154,8 +154,8 @@ class Es_Migration_Page {
 	public static function render() {
 		$f = es_framework_instance();
 		$f->load_assets();
-		wp_enqueue_style( 'es-migration', ES_PLUGIN_URL . '/admin/css/migration.min.css', array( 'es-admin', 'estatik-progress' ) );
-		wp_enqueue_script( 'es-migration', ES_PLUGIN_URL . '/admin/js/migration.min.js', array( 'jquery', 'estatik-progress' ) );
+		wp_enqueue_style( 'es-migration', ES_PLUGIN_URL . '/admin/css/migration.min.css', array( 'es-admin', 'ipro-progress' ) );
+		wp_enqueue_script( 'es-migration', ES_PLUGIN_URL . '/admin/js/migration.min.js', array( 'jquery', 'ipro-progress' ) );
 		wp_localize_script( 'es-migration', 'Estatik_Migration', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'listingsLink' => admin_url( 'edit.php?post_type=properties' ),

@@ -1058,7 +1058,9 @@ class Es_Settings_Container
 				'wishlist_properties_per_page' => array(
 					'default_value' => 42,
 				),
-
+                'ipro_api_endpoint' => array(),
+                'ipro_client_id' => array(),
+                'ipro_client_secret' => array(),
 				'google_api_key' => array(),
 
 				'default_lat_lng' => array(),

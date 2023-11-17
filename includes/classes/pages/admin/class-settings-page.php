@@ -73,6 +73,10 @@ class Es_Settings_Page {
 				'label' => _x( 'General', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/general-tab.php' ),
 			),
+            'ipro-endpoint' => array(
+                'label' => _x( 'Ipro Endpoint Setting', 'plugin settings', 'es' ),
+                'template' => es_locate_template( 'admin/settings/tabs/iproendpoint-tab.php' ),
+            ),
             'shortcode' => array(
                 'label' => _x( 'Shortcodes', 'plugin settings', 'es' ),
                 'template' => es_locate_template( 'admin/settings/tabs/shortcode-tab.php' )
@@ -81,7 +85,7 @@ class Es_Settings_Page {
                 'label' => _x( 'Elementor Widget', 'plugin settings', 'es' ),
                 'template' => es_locate_template( 'admin/settings/tabs/elementorWidget-tab.php' )
             ),
-			'map' => array(
+            'map' => array(
 				'label' => _x( 'Map', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/map-tab.php' )
 			),

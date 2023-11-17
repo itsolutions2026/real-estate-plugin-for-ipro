@@ -40,31 +40,6 @@
 	    'caption' => __( 'Choose the zoom level for the map on single property page. 0 corresponds to a map of the earth fully zoomed out, and larger zoom levels zoom in at a higher resolution.' ),
     ) ); ?>
 
-    <div id="es-map-zoom-limit-container">
-    <?php es_settings_field_render( 'map_zoom_min', array(
-	    'label' => __( 'Min zoom level', 'es' ),
-	    'type' => 'incrementer',
-	    'value' => 1,
-	    'attributes' => array(
-		    'min' => 1,
-		    'max' => 20,
-		    'step' => 1,
-	    ),
-        'pro' => true,
-    ) );
-
-    es_settings_field_render( 'map_zoom_max', array(
-	    'label' => __( 'Max zoom level', 'es' ),
-	    'type' => 'incrementer',
-	    'value' => 21,
-	    'attributes' => array(
-		    'min' => 1,
-		    'max' => 21,
-		    'step' => 1,
-	    ),
-	    'pro' => true,
-    ) ); ?>
-    </div>
 
     <?php es_settings_field_render( 'is_clusters_enabled', array(
         'label' => __( 'Enable markers cluster', 'es' ),

@@ -1,23 +1,6 @@
 <h2><?php echo _x( 'General', 'plugin settings', 'es' ); ?></h2>
 
-<div class="es-settings-fields es-settings-fields--general es-settings-fields--max-width">
-    <?php if ( current_user_can( 'install_languages' ) ) {
-        if ( ! function_exists( 'wp_get_available_translations' ) ) {
-            /** WordPress Translation Installation API */
-            require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
-        }
-
-        if ( wp_can_install_language_pack() ) {
-            es_settings_field_render( 'language', array(
-                'label' => __( 'Language', 'es' ),
-                'type' => 'select',
-                'attributes' => array(
-                    'placeholder' => __( 'Choose language', 'es' ),
-                ),
-                'options' => wp_list_pluck( wp_get_available_translations(), 'native_name', 'language' ),
-            ) );
-        }
-    } ?>
+<div class="es-settings-fields es-settings-fields--general">
 
     <div class="es-field-row">
         <?php es_settings_field_render( 'area_unit', array(
@@ -76,8 +59,8 @@
         'reset_value' => ests_default( 'secondary_color' ),
     ) );
 
-    es_settings_field_render( 'is_tel_code_disabled', array(
-        'label' => __( 'Disable tel country code', 'es' ),
-        'type' => 'switcher',
-    ) ); ?>
+//    es_settings_field_render( 'is_tel_code_disabled', array(
+//        'label' => __( 'Disable tel country code', 'es' ),
+//        'type' => 'switcher',
+//    ) ); ?>
 </div>

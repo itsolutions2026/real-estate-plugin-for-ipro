@@ -73,6 +73,14 @@ class Es_Settings_Page {
 				'label' => _x( 'General', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/general-tab.php' ),
 			),
+            'shortcode' => array(
+                'label' => _x( 'Shortcodes', 'plugin settings', 'es' ),
+                'template' => es_locate_template( 'admin/settings/tabs/shortcode-tab.php' )
+            ),
+            'elementorWidget' => array(
+                'label' => _x( 'Elementor Widget', 'plugin settings', 'es' ),
+                'template' => es_locate_template( 'admin/settings/tabs/elementorWidget-tab.php' )
+            ),
 			'map' => array(
 				'label' => _x( 'Map', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/map-tab.php' )
@@ -81,7 +89,7 @@ class Es_Settings_Page {
 				'label' => _x( 'Google reCAPTCHA', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/recaptcha-tab.php' )
 			),
-			'listings' => array(
+            'listings' => array(
 				'label' => _x( 'Listings', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/listings-tab.php' )
 			),

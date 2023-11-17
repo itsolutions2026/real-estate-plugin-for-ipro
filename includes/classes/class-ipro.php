@@ -105,7 +105,6 @@ class Ipro {
 			'base-widget' => ES_PLUGIN_CLASSES . 'widgets' . DS . 'class-widget.php',
 			'base-properties-filter-widget' => ES_PLUGIN_CLASSES . 'widgets' . DS . 'class-properties-filter-widget.php',
 			'search-form-widget' => ES_PLUGIN_CLASSES . 'widgets' . DS . 'class-search-form-widget.php',
-			'request-form-widget' => ES_PLUGIN_CLASSES . 'widgets' . DS . 'class-request-form-widget.php',
 			'properties-slider-widget' => ES_PLUGIN_CLASSES . 'widgets' . DS . 'class-properties-slider-widget.php',
 			'listings-widget' => ES_PLUGIN_CLASSES . 'widgets' . DS . 'class-listings-widget.php',
 

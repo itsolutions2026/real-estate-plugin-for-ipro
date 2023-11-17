@@ -13,7 +13,7 @@ abstract class Es_Framework_Multi_Fields_Field extends Es_Framework_Base_Field {
     public function get_values() {
         $config = $this->get_field_config();
         $values = ! is_array( $config['value'] ) ? array( $config['value'] ) : $config['value'];
-        $values = array_filter( $values, 'strlen' );
+        $values = !empty($values)? array_filter( $values, 'strlen' ) : '';
         return empty( $values ) && ! empty( $config['default_value'] ) ? array( $config['default_value'] ) : $values;
     }
 

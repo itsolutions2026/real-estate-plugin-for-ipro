@@ -66,16 +66,7 @@ es_settings_field_render( 'is_lightbox_disabled', array(
 	'type' => 'switcher',
 ) );
 
-es_settings_field_render( 'is_request_form_geolocation_enabled', array(
-	'label' => __( 'Enable request form geolocation', 'es' ),
-	'type' => 'switcher',
-    'description' => __( 'This option uses for autofill tel code field by user location.', 'es' ),
-) );
 
-es_settings_field_render( 'is_request_form_button_disabled', array(
-	'label' => __( 'Hide Request Info button', 'es' ),
-	'type' => 'switcher',
-) );
 
 if ( $fonts = es_get_google_fonts() ) {
     es_settings_field_render( 'headings_font', array(

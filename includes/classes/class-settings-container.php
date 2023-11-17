@@ -890,7 +890,7 @@ class Es_Settings_Container
 				),
 
 				'is_request_form_button_disabled' => array(
-					'default_value' => 0,
+					'default_value' => 1,
 				),
 
 				'is_listing_address_enabled' => array(

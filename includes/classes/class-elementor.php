@@ -84,14 +84,12 @@ class Es_Elementor_Init {
             require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-query.php';
             require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-search-form-widget.php';
             require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-properties-slider-widget.php';
-            require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-request-form-widget.php';
             require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-listings-widget.php';
             require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-authentication-widget.php';
             require_once ES_PLUGIN_CLASSES . 'widgets' . DS . 'elementor' . DS . 'class-elementor-half-map-widget.php';
 
             Plugin::instance()->widgets_manager->register_widget_type( new Elementor_Es_Search_Form_Widget() );
             Plugin::instance()->widgets_manager->register_widget_type( new Elementor_Es_Properties_Slider_Widget() );
-            Plugin::instance()->widgets_manager->register_widget_type( new Elementor_Es_Request_Form_Widget() );
             Plugin::instance()->widgets_manager->register_widget_type( new Elementor_Es_Listings_Widget() );
             Plugin::instance()->widgets_manager->register_widget_type( new Elementor_Es_Authentication_Widget() );
             Plugin::instance()->widgets_manager->register_widget_type( new Elementor_Es_Half_Map_Widget() );

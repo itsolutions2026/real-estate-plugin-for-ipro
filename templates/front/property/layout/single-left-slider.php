@@ -31,9 +31,6 @@ do_action( 'es_single_property_after_title', get_the_ID() ); ?>
 		        'icon_size' => 'big'
 	        ) ) ; ?>
 
-	        <?php if ( es_is_request_form_active() && ! ests( 'is_request_form_button_disabled' ) ) : ?>
-                <a href="#request_form" class="es-btn--request-info es-btn es-btn--primary js-es-scroll-to"><?php _e( 'Request info', 'es' ); ?></a>
-	        <?php endif; ?>
         </div>
     </div>
 </div>

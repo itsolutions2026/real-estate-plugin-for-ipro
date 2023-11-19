@@ -161,7 +161,7 @@
                     }
                 }
             }, 'json' ).fail( function() {
-                Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact estatik support.</div>" );
+                Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact ipro support.</div>" );
             } ).always( function() {
                 $inputs.removeProp( 'disabled' ).removeAttr( 'disabled' ).trigger( 'change' );
             } );

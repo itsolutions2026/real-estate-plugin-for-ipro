@@ -1268,3 +1268,6 @@ function es_set_property_sort_labels( $post_id ) {
 	}
 }
 add_action( 'es_after_save_property', 'es_set_property_sort_labels' );
+
+
+

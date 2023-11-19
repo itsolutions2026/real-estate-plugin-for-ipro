@@ -69,14 +69,14 @@ class Es_Settings_Page {
 		) );
 
 		$tabs = apply_filters( 'es_settings_page_tabs', array(
-			'general' => array(
-				'label' => _x( 'General', 'plugin settings', 'es' ),
-				'template' => es_locate_template( 'admin/settings/tabs/general-tab.php' ),
-			),
             'ipro-endpoint' => array(
                 'label' => _x( 'Ipro Endpoint Setting', 'plugin settings', 'es' ),
                 'template' => es_locate_template( 'admin/settings/tabs/iproendpoint-tab.php' ),
             ),
+			'general' => array(
+				'label' => _x( 'General', 'plugin settings', 'es' ),
+				'template' => es_locate_template( 'admin/settings/tabs/general-tab.php' ),
+			),
             'shortcode' => array(
                 'label' => _x( 'Shortcodes', 'plugin settings', 'es' ),
                 'template' => es_locate_template( 'admin/settings/tabs/shortcode-tab.php' )
@@ -117,10 +117,10 @@ class Es_Settings_Page {
 				'label' => _x( 'Sharing', 'plugin settings', 'es' ),
 				'template' => es_locate_template( 'admin/settings/tabs/sharing-tab.php' )
 			),
-			'slugs' => array(
-				'label' => _x( 'URL slug', 'plugin settings', 'es' ),
-				'template' => es_locate_template( 'admin/settings/tabs/slugs-tab.php' )
-			),
+//			'slugs' => array(
+//				'label' => _x( 'URL slug', 'plugin settings', 'es' ),
+//				'template' => es_locate_template( 'admin/settings/tabs/slugs-tab.php' )
+//			),
 
 			'terms' => array(
 				'label' => _x( 'Privacy policy & Terms of use', 'plugin settings', 'es' ),

@@ -57,9 +57,6 @@ class Es_Framework_Icon_Field extends Es_Framework_Field {
 				<?php endforeach; ?>
             </ul>
 
-            <b class='es-overlay__title'><?php echo $config['upload_title']; ?></b>
-            <p><?php echo $config['upload_text']; ?></p>
-            <button class='es-btn es-btn--third es-btn--small' disabled><span class='es-icon es-icon_upload'></span><?php echo $config['upload_button_label']; ?></button>
         </div>
         </div><?php
 

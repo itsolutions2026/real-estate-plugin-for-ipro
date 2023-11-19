@@ -1061,6 +1061,9 @@ class Es_Settings_Container
                 'ipro_api_endpoint' => array(),
                 'ipro_client_id' => array(),
                 'ipro_client_secret' => array(),
+				'is_rest_cron_enabled' => array(
+				    'default_value' => false
+                ),
 				'google_api_key' => array(),
 
 				'default_lat_lng' => array(),

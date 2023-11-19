@@ -296,7 +296,7 @@
                     Estatik_Admin.renderNotification( response.message );
                 }
             }, 'json' ).fail( function() {
-                Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact estatik support.</div>" );
+                Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact ipro support.</div>" );
             } ).always( function() {
                 $submit_btn.removeProp( 'disabled' ).removeAttr( 'disabled' ).removeClass( 'es-preload' );
                 $( 'html,body' ).animate( { scrollTop: 0 }, 'slow' );

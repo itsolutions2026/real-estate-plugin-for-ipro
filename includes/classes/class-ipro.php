@@ -127,6 +127,7 @@ class Ipro {
 			'new-user-info-email' => ES_PLUGIN_CLASSES . 'emails/class-new-user-info-email.php',
 			'new-user-registered-admin-email' => ES_PLUGIN_CLASSES . 'emails/class-new-user-registered-admin-email.php',
 			'reset-password-email' => ES_PLUGIN_CLASSES . 'emails/class-reset-password-email.php',
+            'ipro-cron-job' => ES_PLUGIN_CLASSES. '/class-cronjob.php',
 		) );
 
 		if ( ! empty( $files ) ) {

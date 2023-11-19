@@ -12,7 +12,7 @@
                     Estatik_Admin.renderNotification( response.message );
                 }
             }, 'json' ).fail( function() {
-                Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact estatik support.</div>" );
+                Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact ipro support.</div>" );
             } ).always( function() {
                 $button.addClass( 'es-hidden' );
                 $button.removeProp( 'disabled' ).removeAttr( 'disabled' );
@@ -26,5 +26,6 @@
                 $( '.es-field__is_layout_switcher_enabled .es-field__label' ).html( $( '#es-field-is_layout_switcher_enabled' ).data( $( this ).val() + '-label' ) );
             }
         } ).trigger( 'change' );
+
     } );
 } )( jQuery );

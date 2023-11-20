@@ -38,7 +38,7 @@ class Es_Cron_Job
         $this->clientId = $settings->__get('ipro_client_id');
         $this->clientSecret = $settings->__get('ipro_client_secret');
         $this->cronEnabled = $settings->__get('is_rest_cron_enabled');
-
+        error_log(print_r($this->cronEnabled , 1));
         $this->accessToken = get_transient('ipro_access_token');
         if (empty($this->accessToken)) $this->accessToken = $this->get_accessToken();
 
@@ -76,7 +76,7 @@ class Es_Cron_Job
     {
 
         $schedules['ipro_timeInterval'] = array(
-            'interval' => 600, // in seconds
+            'interval' => 60, // in seconds
             'display' => __('Ipro Time Interval', 'ipro'),
         );
         return $schedules;
@@ -99,8 +99,10 @@ class Es_Cron_Job
         // Get the recent updated property list
 
         $recentUpdatedProperties = $this->fetchRecentUpdates();
-
-        error_log(print_r($recentUpdatedProperties[1], 1));
+        if(!empty($recentUpdatedProperties) && is_array($recentUpdatedProperties)){
+            $propertyIDs= array_column($recentUpdatedProperties,'PropertyId');
+            $this->setupPropertyDetail($propertyIDs);
+        }
     }
 
     /**
@@ -187,6 +189,8 @@ class Es_Cron_Job
                 'time' => round(($currentTime - $lastUpdatedTime) / 60) + 1
             ));
         }
+
+        return null;
     }
 
     private function fetchAllProperties(){
@@ -225,19 +229,132 @@ class Es_Cron_Job
     public function setupPropertyDetail($propertyIDs = array ()){
         try{
             if(!is_array($propertyIDs)) throw new Exception('Invalid IDs!');
-            error_log(print_r($propertyIDs, 1));
 
             foreach ($propertyIDs as $ID){
                 $propertyDetail = $this->apiWrapper('property', array(
                     'propertyId' => $ID
                 ));
 
-                error_log(print_r($propertyDetail['Id'], 1));
+                if(is_array($propertyDetail) && !empty($propertyDetail['Id'])){
+
+                    $fields = array();
+
+                    $fields['ipro_Id'] = $propertyDetail['Id'];
+
+                    if(is_array($propertyDetail['Images']) && count($propertyDetail['Images'])){
+                        $fields['gallery'] = array_column($propertyDetail['Images'], 'Source');
+                    }
+
+                    if(!empty($propertyDetail['GeoLocation'])){
+                        $geolocation = explode(",",$propertyDetail['GeoLocation'], 2);
+                        if(isset($geolocation[0]) && isset($geolocation[1])){
+                            $fields['latitude'] = $geolocation[0];
+                            $fields['longitude'] = $geolocation[1];
+                            $fields['longitude'] = str_ireplace( array(','), '',  $geolocation[1]);
+                        }
+                    }
+                    //Location
+                    if(!empty($propertyDetail['Location']) && is_array($propertyDetail['Location']) && count($propertyDetail['Location']) > 0){
+                        $fields['es_type'] = array ($propertyDetail['Location'][0] );
+                        $fields['country'] = $propertyDetail['Location'][1];
+                        $fields['state'] = $propertyDetail['Location'][2];
+                        $fields['province'] = $propertyDetail['Location'][3];
+                        $fields['city'] = $propertyDetail['Location'][4];
+                    }
+
+                    if(!empty($propertyDetail['Attributes']['Bathrooms'][0])) $fields['bathrooms'] = $propertyDetail['Attributes']['Bathrooms'][0];
+                    if(!empty($propertyDetail['Attributes']['Bedrooms'][0])) $fields['bedrooms'] = $propertyDetail['Attributes']['Bedrooms'][0];
+                    if(!empty($propertyDetail['Attributes']['Dogs'][0])) $fields['es_dog'] = $propertyDetail['Attributes']['Dogs'][0];
+                    if(!empty($propertyDetail['Attributes']['Sleeps'][0])) $fields['sleeps'] = $propertyDetail['Attributes']['Sleeps'][0];
+                    if(!empty($propertyDetail['Address'])) $fields['address'] = $propertyDetail['Address'];
+                    if(!empty($propertyDetail['Postcode'])) $fields['postal_code'] = $propertyDetail['Postcode'];
+
+                    if(!empty($propertyDetail['Attributes']['Holiday Ideas']) && is_array($propertyDetail['Attributes']['Holiday Ideas']) && count($propertyDetail['Attributes']['Holiday Ideas']))
+                        $fields['es_holiday_ideas'] = $propertyDetail['Attributes']['Holiday Ideas'];
+                    if(!empty($propertyDetail['Attributes']['Bedrooms Style']) && is_array($propertyDetail['Attributes']['Bedrooms Style']) && count($propertyDetail['Attributes']['Bedrooms Style']))
+                        $fields['es_bedroom_style'] = $propertyDetail['Attributes']['Bedrooms Style'];
+
+                    if(!empty($propertyDetail['Attributes']['Amenities']) && is_array($propertyDetail['Attributes']['Amenities']) && count($propertyDetail['Attributes']['Amenities']))
+                        $fields['es_amenity'] = $propertyDetail['Attributes']['Amenities'];
+                    if(!empty($propertyDetail['Attributes']['Theme']) && is_array($propertyDetail['Attributes']['Theme']) && count($propertyDetail['Attributes']['Theme']))
+                        $fields['es_theme'] = $propertyDetail['Attributes']['Theme'];
+                    if(!empty($propertyDetail['Attributes']['Entertainment']) && is_array($propertyDetail['Attributes']['Entertainment']) && count($propertyDetail['Attributes']['Entertainment']))
+                        $fields['es_entertainment'] = $propertyDetail['Attributes']['Entertainment'];
+                    if(!empty($propertyDetail['Attributes']['Distances']) && is_array($propertyDetail['Attributes']['Distances']) && count($propertyDetail['Attributes']['Distances']))
+                        $fields['es_distance'] = $propertyDetail['Attributes']['Distances'];
+                    if(!empty($propertyDetail['Attributes']['Internet']) && is_array($propertyDetail['Attributes']['Internet']) && count($propertyDetail['Attributes']['Internet']))
+                        $fields['es_internet'] = $propertyDetail['Attributes']['Internet'];
+                    if(!empty($propertyDetail['Attributes']['Parking']) && is_array($propertyDetail['Attributes']['Parking']) && count($propertyDetail['Attributes']['Parking']))
+                        $fields['es_parking'] = $propertyDetail['Attributes']['Parking'];
+                    if(!empty($propertyDetail['Attributes']['Property Type']) && is_array($propertyDetail['Attributes']['Property Type']) && count($propertyDetail['Attributes']['Property Type']))
+                        $fields['es_property_type'] = $propertyDetail['Attributes']['Property Type'];
+                    if(!empty($propertyDetail['Attributes']['Family']) && is_array($propertyDetail['Attributes']['Family']) && count($propertyDetail['Attributes']['Family']))
+                        $fields['es_family'] = $propertyDetail['Attributes']['Family'];
+                    if(!empty($propertyDetail['SEOTitle']) && is_array($propertyDetail['SEOTitle']) && count($propertyDetail['SEOTitle']) > 0){
+                        $fields['keywords'] = array($propertyDetail['SEOTitle']);
+                    }
+
+                    if(!empty($propertyDetail['VirtualTour'])){
+                        $fields['video']['video_iframe'] = $propertyDetail['VirtualTour'];
+                    }
+
+                    if (!empty($propertyDetail['FloorPlan'])) {
+                        preg_match('@src="([^"]+)"@', $propertyDetail['FloorPlan'], $matches);
+
+                        if (is_array($matches) && count($matches) > 1) {
+                            $match = array_pop($matches);
+                            $fields['floor_plans'] = array();
+                            if (!preg_match("/^([a-z0-9-.]*)\.([a-z]{2,3})$/i", $match)) {
+                                array_push($fields['floor_plans'], $this->endpoint . $match);
+                            } else {
+                                array_push($fields['floor_plans'], $match);
+                            }
+                        }
+                    }
+
+                    if(!empty($propertyDetail['PlotSize'])){
+                        $fields['lot_size'] = $propertyDetail['PlotSize'];
+                    }
+
+                    if(!empty($propertyDetail['BuildSize'])){
+                        $fields['area'] = $propertyDetail['BuildSize'];
+                    }
+
+                    $data = array(
+                        'system' => array(
+                            'post_title' => $propertyDetail['Title'],
+                            'post_content' => $propertyDetail['Intro'] . $propertyDetail['MainDescription'],
+                            'post_name' => sanitize_title( $propertyDetail['PropertyName'] ),
+                        ),
+                        'fields' => $fields
+                    );
+
+                    $post_id = es_search_property_by_meta($propertyDetail['Id'], 'es_property_ipro_Id');
+
+                    if(empty($post_id)){
+
+                        $post_data = wp_parse_args( $data['system'], array(
+                            'post_type' => 'properties',
+                            'post_status' => 'publish',
+                        ) );
+
+                        $post_id = wp_insert_post( $post_data, true );
+                    } else{
+                        wp_update_post(wp_parse_args( $data['system'], array(
+                            'ID' => $post_id,
+                            'post_status' => 'publish',
+                        )));
+                    }
+
+                    if ( ! is_wp_error( $post_id ) ) {
+                        $property = es_get_property( $post_id );
+                        $property->save_fields( $data['fields'] );
+                    }
+                }
             }
 
             return array(
                 'status' => 'success',
-                'message' => 5,
             );
         }
         catch (Exception $exception){

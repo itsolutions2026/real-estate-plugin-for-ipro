@@ -1,97 +1,96 @@
-.estatik_page_es_fields_builder {
+.ipro_page_es_fields_builder {
   background: #fff;
 }
-.estatik_page_es_fields_builder #wpcontent {
+.ipro_page_es_fields_builder #wpcontent {
   padding: 0;
   background: #fff;
 }
-.estatik_page_es_fields_builder #wpbody-content {
+.ipro_page_es_fields_builder #wpbody-content {
   padding-bottom: 0;
 }
-.estatik_page_es_fields_builder .update-nag {
+.ipro_page_es_fields_builder .update-nag {
   display: none;
 }
-.estatik_page_es_fields_builder #wpfooter {
+.ipro_page_es_fields_builder #wpfooter {
   display: none;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-logo {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-logo {
   right: 30px;
-  width: 70px;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form, .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form, .ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content {
   flex: 1;
   padding: 40px 30px 40px;
   position: relative;
   box-sizing: border-box;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form h2, .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content h2 {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form h2, .ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content h2 {
   margin-bottom: 40px;
 }
 @media screen and (max-width: 1000px) {
-  .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content {
+  .ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-tabs__content {
     flex: 1 0 100%;
   }
-  .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form {
+  .ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__wrapper .es-field-builder__form {
     flex: 1 0 100%;
     border: 0;
   }
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li {
   display: flex;
   max-width: 190px;
   justify-content: space-between;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.disable-edit {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.disable-edit {
   opacity: 0.5;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li > a {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li > a {
   display: block;
   width: 100%;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.ui-sortable-helper {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.ui-sortable-helper {
   background: #fff;
   box-shadow: 0 2px 6px rgba(38, 50, 56, 0.15);
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.ui-sortable-helper a .es-icon_arrows-hv {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.ui-sortable-helper a .es-icon_arrows-hv {
   color: #4FC3F7;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.ui-sortable-placeholder {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li.ui-sortable-placeholder {
   background: #CFD8DC;
   visibility: visible !important;
   border-left: none;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li .es-fields-builder__manage-links {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li .es-fields-builder__manage-links {
   display: none;
   align-items: center;
   position: relative;
   margin-right: 10px;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li .es-fields-builder__manage-links a {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li .es-fields-builder__manage-links a {
   color: #37474F;
   text-decoration: none;
   font-size: 15px;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li .es-fields-builder__manage-links a:first-child {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li .es-fields-builder__manage-links a:first-child {
   margin-right: 10px;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li:hover a {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li:hover a {
   color: #263238;
   font-weight: 500;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li:hover .es-fields-builder__manage-links {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav ul li:hover .es-fields-builder__manage-links {
   display: flex;
 }
-.estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav .es-btn {
+.ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav .es-btn {
   margin-left: 16px;
   margin-top: 40px;
 }
 @media screen and (max-width: 1120px) {
-  .estatik_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav {
+  .ipro_page_es_fields_builder .es-tabs.es-tabs__fields-builder .es-tabs__nav {
     max-width: 250px;
     flex: 1 0 250px;
   }

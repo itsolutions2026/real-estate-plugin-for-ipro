@@ -65,6 +65,7 @@ if ( ! function_exists( 'es_get_the_section_fields_html' ) ) {
             do_action( $section['frontend_action'], $post_id, $section );
             $content = ob_get_clean();
         } else if ( ! empty( $fields ) ) {
+
 			ob_start();
             include es_locate_template( 'front/partials/entity-section-content.php' );
             $content = ob_get_clean();

@@ -168,7 +168,7 @@ class Es_Properties_Archive_Page extends Es_Entities_Archive_Page {
         if ( ! empty( $_GET['entities_filter'] ) ) {
 		    $filter = $_GET['entities_filter'];
 
-		    foreach ( array( 'es_category', 'es_type', 'es_status' ) as $taxonomy ) {
+		    foreach ( array( 'es_type', 'es_status' ) as $taxonomy ) {
 		        if ( ! empty( $filter[ $taxonomy ] ) ) {
                     $tax_query[] = array(
                         'taxonomy' => $taxonomy,

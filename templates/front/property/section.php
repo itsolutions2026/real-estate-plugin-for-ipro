@@ -7,7 +7,7 @@
  */
 
 if ( ! empty( $content ) ) : ?>
-    <div class="es-property-section es-property_section--<?php echo $machine_name; ?>" id="<?php echo $machine_name; ?>">
+    <div class="es-property-section es-property_section--<?php echo $machine_name; ?>" id="<?php echo $machine_name; ?>" style="scroll-behavior: smooth !important;">
         <?php if ( ! empty( $label ) ) : ?>
             <h3 class="es-property-section__title"><?php _e( $label, 'es' ); ?></h3>
         <?php endif; ?>

@@ -28,7 +28,7 @@ abstract class Es_Properties_Filter_Widget extends Es_Widget {
 	 * @return array|array[]
 	 */
 	public function get_widget_form( $instance ) {
-		foreach ( array( 'es_category', 'es_type' ) as $taxonomy ) {
+		foreach ( array( 'es_type' ) as $taxonomy ) {
 			if ( empty( static::$_taxonomies_values[ $taxonomy ] ) ) {
 				$terms = es_get_terms_list( $taxonomy );
 				$terms = $terms ? $terms : array();
@@ -66,21 +66,6 @@ abstract class Es_Properties_Filter_Widget extends Es_Widget {
 				'type' => 'number',
 				'label' => __( 'Listings to show', 'es' ),
 				'before' => '<div class="es-listings-by-filter">',
-			),
-			'es_category' => array(
-				'label' => __( 'Property categories to show', 'es' ),
-				'type' => 'checkboxes',
-				'options' => static::$_taxonomies_values['es_category'],
-				'attributes' => array(
-					'class' => 'js-es-check-state'
-				),
-				'items_attributes' => array(
-					'' => array(
-						'attributes' => array(
-							'class' => 'js-es-check-all'
-						),
-					),
-				),
 			),
 			'es_type' => array(
 				'label' => __( 'Property types to show', 'es' ),

@@ -37,7 +37,6 @@ foreach ( $fields as $field => $field_info ) :
         <?php else :
             $class_list = array( 'es-entity-field', "es-entity-field--{$field}", "es-{$entity_name}-field", "es-{$entity_name}-field--{$field}", "es-{$entity_name}-field--{$formatter}" );
             if ( ! empty( $field_info['is_full_width'] ) ) $class_list[] = 'es-entity-field--full-width'; ?>
-
             <li class='<?php echo implode( " ", $class_list ); ?>'>
                 <?php if ( ! empty( $field_info['label'] ) ) :
                     $label = ! empty( $field_info['id'] ) ? __( $field_info['label'], 'es' ) : $field_info['label']; ?>

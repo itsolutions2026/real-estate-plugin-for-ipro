@@ -44,16 +44,6 @@ class Es_Admin_Menu {
 				),
 				'callback' => 'add_submenu_page',
 			),
-            'add-listing' => array(
-				'args' => array(
-					$parent,
-					__( 'Add new property', 'es' ),
-					__( 'Add new property', 'es' ),
-					'manage_options',
-					'post-new.php?post_type=properties',
-				),
-				'callback' => 'add_submenu_page',
-			),
 			'data-manager' => array(
 				'args' => array(
 					$parent,

@@ -277,7 +277,7 @@ if ( ! function_exists( 'es_get_default_sections' ) ) {
 		$sections = apply_filters( 'es_get_default_sections', array(
 			'property' => array(
 				'basic-facts' => array(
-					'label' => __( 'Basics', 'es' ),
+					'label' => __( 'Attributes', 'es' ),
 					'fb_settings' => array(
 						'disable_order' => true,
 						'disable_deletion' => true,
@@ -342,7 +342,7 @@ if ( ! function_exists( 'es_get_default_sections' ) ) {
 					'label' => __( 'Ask an Agent About This Home', 'es' ),
 					'section_name' => __( 'Request form', 'es' ),
 					'order' => 110,
-					'is_visible' => true,
+					'is_visible' => false,
 					'is_visible_for' => array( 'all_users' ),
 					'options' => array(
 						'background_color' => '#ffffff',
@@ -403,6 +403,31 @@ if ( ! function_exists( 'es_get_term_color' ) ) {
 		return es_strtolower( $term_color );
 	}
 }
+
+if( !function_exists('es_search_property_by_meta')) {
+    /**
+     * return WP Post ID
+     *
+     * @param $meta_value
+     * @param $meta_field string
+     * @return number
+     */
+    function es_search_property_by_meta($meta_value, $meta_field){
+        $args = array(
+            'post_type' => 'properties',
+            'meta_key' => $meta_field,
+            'meta_value' => $meta_value,
+            'meta_compare' => '='
+        );
+
+        $posts = get_posts($args);
+        if(!empty($posts[0]->ID)) return $posts[0]->ID;
+
+        return null;
+    }
+}
+
+
 
 if ( ! function_exists( 'es_search_get_field_config' ) ) {
 

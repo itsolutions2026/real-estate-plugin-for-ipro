@@ -109,7 +109,7 @@ class Es_Search_Form_Shortcode extends Es_Shortcode {
             'collapsed_fields' => array( 'half_baths', 'es_amenity', 'es_feature', 'area', 'lot_size', 'floors' ),
 
             // Fields list for advances search type.
-            'fields' => array( 'price', 'es_category', 'es_type', 'es_rent_period',
+            'fields' => array( 'price', 'es_type', 'es_rent_period',
                 'bedrooms', 'bathrooms', 'half_baths', 'es_amenity', 'es_feature',
                 'area', 'lot_size', 'floors' ),
         ) );

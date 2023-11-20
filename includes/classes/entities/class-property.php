@@ -49,12 +49,19 @@ class Es_Property extends Es_Post {
         }
 
 		$fields = array(
+            'ipro_Id' => array (
+                'label' => __( 'IPRO Property ID', 'es' ),
+                'type' => 'text',
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
 			'date_added' => array(
 				'fb_settings' => array(
 					'disable_edit' => true,
 				),
 				'label' => __( 'Date added', 'es' ),
-				'section_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
                 'is_visible' => ests( 'is_date_added_enabled' ),
                 'formatter' => 'date_added'
 			),
@@ -107,11 +114,11 @@ class Es_Property extends Es_Post {
 				'search_support' => true,
 				'section_machine_name' => 'basic-facts',
 			),
-			'es_type' => array(
-				'fb_settings' => array(
-					'disable_name_edit' => true,
-					'disable_tab_field' => true,
-				),
+            'es_type' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
                 'search_settings' => array(
                     'type' => ests( 'search_es_type_field_mode' ),
                     'values_callback' => array(
@@ -123,13 +130,121 @@ class Es_Property extends Es_Post {
                         'multiple' => ests( 'search_es_type_field_mode' ) == 'checkboxes-bordered' ? 'multiple' : false,
                     ),
                 ),
-				'type' => 'radio-bordered',
+                'type' => 'radio-bordered',
                 'taxonomy' => true,
-				'label' => __( 'Type', 'es' ),
+                'label' => __( 'Type', 'es' ),
                 'search_support' => true,
-				'section_machine_name' => 'basic-facts',
-				'frontend_form_name' => __( 'What is your property type?', 'es' ),
-			),
+                'section_machine_name' => 'features',
+                'frontend_form_name' => __( 'What is your property type?', 'es' ),
+            ),
+            'es_family' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Family', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_theme' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Theme', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_property_type' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Property Type', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_entertainment' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Entertainment', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_distance' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Distances', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_internet' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Internet', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_holiday_ideas' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Holiday Ideas', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+            'es_bedroom_style' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'radio-bordered',
+                'taxonomy' => true,
+                'label' => __( 'Bedrooms Style', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
+
+            'es_dog' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_tab_field' => true,
+                ),
+                'type' => 'Number',
+                'label' => __( 'Dog', 'es' ),
+                'search_support' => false,
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
 			'es_status' => array(
 				'fb_settings' => array(
 					'disable_name_edit' => true,
@@ -153,6 +268,22 @@ class Es_Property extends Es_Post {
 				'section_machine_name' => 'basic-facts',
 				'frontend_form_name' => __( 'What is your property status?', 'es' ),
 			),
+            'es_parking' => array(
+                'fb_settings' => array(),
+                'label' => __( 'Parking', 'es' ),
+                'search_support' => true,
+                'taxonomy' => true,
+                'type' => 'checkboxes',
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+                'search_settings' => array(
+                    'type' => 'checkboxes',
+                    'values_callback' => array(
+                        'callback' => 'es_get_terms_list',
+                        'args' => array( 'es_parking', true ),
+                    ),
+                ),
+            ),
 			'bedrooms' => array(
 				'fb_settings' => array(
 					'disable_name_edit' => true,
@@ -171,8 +302,8 @@ class Es_Property extends Es_Post {
                 'search_support' => true,
 				'admin_type' => 'incrementer',
 				'label' => __( 'Bedrooms', 'es' ),
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 				'before' => is_admin() ? "<h3>" . __( 'Basic facts', 'es' ) . "</h3>" : '',
 			),
 			'bathrooms' => array(
@@ -193,9 +324,30 @@ class Es_Property extends Es_Post {
                 ),
                 'search_support' => true,
 				'admin_type' => 'incrementer',
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 			),
+            'sleeps' => array(
+                'fb_settings' => array(
+                    'disable_name_edit' => true,
+                    'disable_type_edit' => true,
+                ),
+                'formatter' => 'sleeps',
+                'is_single_page_formatter_disabled' => true,
+                'label' => __( 'Sleeps', 'es' ),
+                'type' => 'number',
+                'search_settings' => array(
+                    'type' => 'radio-bordered',
+                    'attributes' => array(
+                        'data-single_unit' => __( 'bath', 'es' ),
+                        'data-plural_unit' => __( 'baths', 'es' ),
+                    )
+                ),
+                'search_support' => true,
+                'admin_type' => 'incrementer',
+                'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
+            ),
 			'half_baths' => array(
 				'fb_settings' => array(
 					'disable_type_edit' => true,
@@ -206,10 +358,10 @@ class Es_Property extends Es_Post {
                 ),
                 'formatter' => 'half_baths',
 				'is_single_page_formatter_disabled' => true,
-                'search_support' => true,
+                'search_support' => false,
 				'admin_type' => 'incrementer',
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 			),
 			'total_rooms' => array(
 				'fb_settings' => array(
@@ -220,8 +372,8 @@ class Es_Property extends Es_Post {
                 'search_support' => true,
 				'admin_type' => 'incrementer',
 				'label' => __( 'Total rooms', 'es' ),
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 			),
 			'floors' => array(
 				'fb_settings' => array(
@@ -237,8 +389,8 @@ class Es_Property extends Es_Post {
                 ),
 				'admin_type' => 'incrementer',
 				'label' => __( 'Floors', 'es' ),
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 			),
 			'floor_level' => array(
 				'fb_settings' => array(
@@ -252,8 +404,8 @@ class Es_Property extends Es_Post {
                 ),
 				'admin_type' => 'incrementer',
 				'label' => __( 'Floor level', 'es' ),
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 			),
 			'area' => array(
 				'fb_settings' => array(
@@ -268,8 +420,8 @@ class Es_Property extends Es_Post {
                 'search_support' => true,
 				'formatter' => 'area',
 				'label' => is_admin() ? sprintf( __( 'Area, %s', 'es' ), ests_label( 'area_unit' ) ) : __( 'Area', 'es' ),
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 			),
 			'lot_size' => array(
 				'fb_settings' => array(
@@ -284,16 +436,16 @@ class Es_Property extends Es_Post {
                 'search_support' => true,
 				'formatter' => 'lot_size',
                 'label' => is_admin() ? sprintf( __( 'Lot size, %s', 'es' ), ests_label( 'lot_size_unit' ) ) : __( 'Lot size', 'es' ),
-				'section_machine_name' => 'basic-facts',
-                'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+                'tab_machine_name' => 'features',
 				'after' => '<div class="es-field-break"></div>'
 			),
 			'year_built' => array(
 				'label' => __( 'Year built', 'es' ),
 				'type' => 'number',
 				'search_support' => true,
-				'section_machine_name' => 'basic-facts',
-				'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+				'tab_machine_name' => 'features',
 				'attributes' => array(
 					'placeholder' => __( 'Unknown', 'es' ),
 				),
@@ -302,8 +454,8 @@ class Es_Property extends Es_Post {
 				'label' => __( 'Year remodeled', 'es' ),
 				'type' => 'number',
 				'search_support' => true,
-				'section_machine_name' => 'basic-facts',
-				'tab_machine_name' => 'basic-facts',
+				'section_machine_name' => 'features',
+				'tab_machine_name' => 'features',
 				'attributes' => array(
 					'placeholder' => __( 'Unknown', 'es' ),
 				),
@@ -313,7 +465,7 @@ class Es_Property extends Es_Post {
 				'label' => __( 'Open house', 'es' ),
 				'admin_type' => 'switcher',
 				'type' => 'checkbox',
-				'tab_machine_name' => 'basic-facts',
+				'tab_machine_name' => 'features',
 				'attributes' => array(
 					'data-toggle-container' => '.es-field__is_appointment_only'
 				),
@@ -667,6 +819,46 @@ class Es_Property extends Es_Post {
                     'placeholder' => __( 'Ex. -62.149905', 'es' ),
                 ),
 			),
+            'es_amenity' => array(
+                'fb_settings' => array(
+                    'disable_tab_field' => true,
+                ),
+                'label' => __( 'Amenities', 'es' ),
+                'taxonomy' => true,
+                'search_settings' => array(
+                    'type' => 'checkboxes',
+                    'visible_items' => ests( 'is_amenities_collapse_enabled' ) ? 6 : false,
+                    'show_more_label' => __( 'Show all amenities', 'es' ) . '<span class="es-icon es-icon_chevron-bottom"></span>',
+                    'values_callback' => array(
+                        'callback' => 'es_get_terms_list',
+                        'args' => array( 'es_amenity', true ),
+                    ),
+                ),
+                'search_support' => true,
+                'type' => 'checkboxes',
+                'section_machine_name' => 'features',
+                'frontend_tab_machine_name' => 'features',
+            ),
+            'es_feature' => array(
+                'fb_settings' => array(
+                    'disable_tab_field' => true,
+                ),
+                'label' => __( 'Features', 'es' ),
+                'taxonomy' => true,
+                'search_settings' => array(
+                    'type' => 'checkboxes',
+                    'visible_items' => ests( 'is_features_collapse_enabled' ) ? 6 : false,
+                    'show_more_label' => __( 'Show all features', 'es' ) . '<span class="es-icon es-icon_chevron-bottom"></span>',
+                    'values_callback' => array(
+                        'callback' => 'es_get_terms_list',
+                        'args' => array( 'es_feature', true ),
+                    ),
+                ),
+                'search_support' => true,
+                'type' => 'checkboxes',
+                'section_machine_name' => 'features',
+                'frontend_tab_machine_name' => 'features',
+            ),
 			'address_components' => array(
                 'type' => 'hidden',
                 'label' => __( 'Address components', 'es' ),
@@ -757,46 +949,6 @@ class Es_Property extends Es_Post {
 					'placeholder' => __( 'Link to your video from YouTube or Vimeo', 'es' ),
 				),
 			),
-			'es_amenity' => array(
-				'fb_settings' => array(
-					'disable_tab_field' => true,
-				),
-				'label' => __( 'Amenities', 'es' ),
-                'taxonomy' => true,
-                'search_settings' => array(
-                    'type' => 'checkboxes',
-                    'visible_items' => ests( 'is_amenities_collapse_enabled' ) ? 6 : false,
-                    'show_more_label' => __( 'Show all amenities', 'es' ) . '<span class="es-icon es-icon_chevron-bottom"></span>',
-                    'values_callback' => array(
-                        'callback' => 'es_get_terms_list',
-                        'args' => array( 'es_amenity', true ),
-                    ),
-                ),
-                'search_support' => true,
-				'type' => 'checkboxes',
-				'section_machine_name' => 'features',
-                'frontend_tab_machine_name' => 'features',
-			),
-			'es_feature' => array(
-				'fb_settings' => array(
-					'disable_tab_field' => true,
-				),
-				'label' => __( 'Features', 'es' ),
-                'taxonomy' => true,
-                'search_settings' => array(
-                    'type' => 'checkboxes',
-                    'visible_items' => ests( 'is_features_collapse_enabled' ) ? 6 : false,
-                    'show_more_label' => __( 'Show all features', 'es' ) . '<span class="es-icon es-icon_chevron-bottom"></span>',
-                    'values_callback' => array(
-                        'callback' => 'es_get_terms_list',
-                        'args' => array( 'es_feature', true ),
-                    ),
-                ),
-                'search_support' => true,
-				'type' => 'checkboxes',
-				'section_machine_name' => 'features',
-                'frontend_tab_machine_name' => 'features',
-			),
 			'es_floor_covering' => array(
 				'fb_settings' => array(),
 				'label' => __( 'Floor covering', 'es' ),
@@ -861,22 +1013,7 @@ class Es_Property extends Es_Post {
 					),
 				),
 			),
-			'es_parking' => array(
-				'fb_settings' => array(),
-				'label' => __( 'Parking', 'es' ),
-                'search_support' => true,
-				'taxonomy' => true,
-				'type' => 'checkboxes',
-				'section_machine_name' => 'building-details',
-                'tab_machine_name' => 'building-details',
-				'search_settings' => array(
-					'type' => 'checkboxes',
-					'values_callback' => array(
-						'callback' => 'es_get_terms_list',
-						'args' => array( 'es_parking', true ),
-					),
-				),
-			),
+
             'keywords' => array(
                 'label' => __( 'Keywords', 'es' ),
                 'search_support' => true,
@@ -890,6 +1027,7 @@ class Es_Property extends Es_Post {
                     )
                 ),
             ),
+
 		);
 
 		foreach ( array( 'bedrooms', 'bathrooms', 'area', 'lot_size', 'half_baths', 'floor', 'floor_level' ) as $field ) {
@@ -962,6 +1100,7 @@ class Es_Property extends Es_Post {
 				$value = is_string( $value ) ? array( $value ) : $value;
 	            $value = array_filter( $value );
 
+                $order = 0;
 	            foreach ( $value as $key => $attachment_id ) {
 	                if ( filter_var( $attachment_id , FILTER_VALIDATE_URL ) !== false ) {
 	                    $attachment_id = es_upload_file_by_url( $attachment_id, $this->get_id() );

@@ -13,11 +13,11 @@ do_action( 'es_single_property_after_title', get_the_ID() ); ?>
     <?php es_the_mobile_slider(); ?>
     <div class="es-single__basic">
         <div class="es-singe__basic-inner">
-            <?php if ( es_get_the_field( 'price' ) ) : ?>
-                <div class="es-price-container">
-                    <?php es_the_price(); es_the_field( 'price_note', '<span class="es-badge es-price-badge es-badge--normal">', '</span>' ); ?>
-                </div>
-            <?php endif;
+<!--            --><?php //if ( es_get_the_field( 'price' ) ) : ?>
+<!--                <div class="es-price-container">-->
+<!--                    --><?php //es_the_price(); es_the_field( 'price_note', '<span class="es-badge es-price-badge es-badge--normal">', '</span>' ); ?>
+<!--                </div>-->
+<!--            --><?php //endif;
 
             es_load_template( 'front/property/partials/property-meta.php', array(
                 'use_icons' => true,

@@ -1238,6 +1238,14 @@ function es_alter_term_link( $link, $term, $taxonomy ) {
 }
 add_filter( 'term_link', 'es_alter_term_link', 10, 3 );
 
+function es_sections_builder_get_sections_alter($sections, $entity){
+//    error_log(print_r($sections ,1 ));
+    unset($sections['request_form']);
+    return $sections;
+}
+
+add_filter( 'es_sections_builder_get_sections', 'es_sections_builder_get_sections_alter', 10 ,2);
+
 /**
  * @param $post_id
  */
@@ -1268,6 +1276,12 @@ function es_set_property_sort_labels( $post_id ) {
 	}
 }
 add_action( 'es_after_save_property', 'es_set_property_sort_labels' );
+
+
+
+
+
+
 
 
 

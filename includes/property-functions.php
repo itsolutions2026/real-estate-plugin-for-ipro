@@ -120,6 +120,8 @@ if ( ! function_exists( 'es_the_entity_section' ) ) {
             $section[ $entity_name . '_id' ] = $post_id;
 	        $section['content'] = '';
 
+
+
             if ( ! empty( $section['render_action'] ) ) {
                 ob_start();
                 do_action( $section['render_action'], $section, $post_id );

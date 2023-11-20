@@ -11,10 +11,10 @@
         ) ); ?>
     </div>
     <div class="es-single__header-right">
-        <?php if ( es_get_the_field( 'price' ) ) : ?>
-            <div class="es-price-container">
-                <?php es_the_price(); es_the_field( 'price_note', '<span class="es-badge es-price-badge es-badge--normal">', '</span>' ); ?>
-            </div>
-        <?php endif; ?>
+<!--        --><?php //if ( es_get_the_field( 'price' ) ) : ?>
+<!--            <div class="es-price-container">-->
+<!--                --><?php //es_the_price(); es_the_field( 'price_note', '<span class="es-badge es-price-badge es-badge--normal">', '</span>' ); ?>
+<!--            </div>-->
+<!--        --><?php //endif; ?>
     </div>
 </div>

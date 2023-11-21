@@ -1239,7 +1239,6 @@ function es_alter_term_link( $link, $term, $taxonomy ) {
 add_filter( 'term_link', 'es_alter_term_link', 10, 3 );
 
 function es_sections_builder_get_sections_alter($sections, $entity){
-//    error_log(print_r($sections ,1 ));
     unset($sections['request_form']);
     return $sections;
 }

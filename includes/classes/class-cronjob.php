@@ -38,7 +38,6 @@ class Es_Cron_Job
         $this->clientId = $settings->__get('ipro_client_id');
         $this->clientSecret = $settings->__get('ipro_client_secret');
         $this->cronEnabled = $settings->__get('is_rest_cron_enabled');
-        error_log(print_r($this->cronEnabled , 1));
         $this->accessToken = get_transient('ipro_access_token');
         if (empty($this->accessToken)) $this->accessToken = $this->get_accessToken();
 
@@ -188,6 +187,8 @@ class Es_Cron_Job
             return $this->apiWrapper('lastUpdated', array(
                 'time' => round(($currentTime - $lastUpdatedTime) / 60) + 1
             ));
+        } else {
+            update_option('ipro_last_updated_time', $currentTime);
         }
 
         return null;

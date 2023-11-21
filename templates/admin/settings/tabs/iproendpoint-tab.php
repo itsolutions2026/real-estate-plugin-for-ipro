@@ -140,15 +140,21 @@
                         clear()
                     }
                     else if (response.status === 'success') {
-                        idList = response.message
-                        total = idList.length
-                        currentStatus = 0
-                        updateProgressBar()
-                        loadBuffer()
+                        if(Array.isArray(response.message)){
+                            idList = response.message
+                            total = idList.length
+                            currentStatus = 0
+                            updateProgressBar()
+                            loadBuffer()
+                        }
+                        else{
+                            Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>No Property error. Please contact IPRO support.</div>" );
+                            clear()
+                        }
                     }
 
                 }, 'json').fail( function(error) {
-                    Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Saving error. Please, contact ipro support.</div>" );
+                    Estatik_Admin.renderNotification( "<div class='es-notification es-notification--error'>Unknown Server Error. Please, contact ipro support.</div>" );
                     clear()
                 })
 

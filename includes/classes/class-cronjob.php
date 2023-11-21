@@ -32,14 +32,7 @@ class Es_Cron_Job
     public function __construct()
     {
         //Get the Settings
-        $settings = new Es_Settings_Container();
-        $settings->load_options();
-        $this->endpoint = $settings->__get('ipro_api_endpoint');
-        $this->clientId = $settings->__get('ipro_client_id');
-        $this->clientSecret = $settings->__get('ipro_client_secret');
-        $this->cronEnabled = $settings->__get('is_rest_cron_enabled');
-        $this->accessToken = get_transient('ipro_access_token');
-        if (empty($this->accessToken)) $this->accessToken = $this->get_accessToken();
+
 
     }
 
@@ -54,6 +47,7 @@ class Es_Cron_Job
         add_filter('cron_schedules', array($this, 'add_wp_cron_schedule'));
         add_action('ipro_cron_scheduler', array($this, 'ipro_cron_scheduler'));
         add_action( 'wp_ajax_es_ipro_load_properties', array( $this, 'ajax_load_properties' ) );
+        add_action( 'es_settings_save', array( $this, 'validate_oauth_token' ), 10 ,5);
     }
 
     /**
@@ -81,17 +75,41 @@ class Es_Cron_Job
         return $schedules;
     }
 
+    public function initialCredential(){
+        $settings = new Es_Settings_Container();
+        $settings->load_options();
+        $this->endpoint = $settings->__get('ipro_api_endpoint');
+        $this->clientId = $settings->__get('ipro_client_id');
+        $this->clientSecret = $settings->__get('ipro_client_secret');
+        $this->cronEnabled = $settings->__get('is_rest_cron_enabled');
+        $this->accessToken = get_transient('ipro_access_token');
+        if (empty($this->accessToken)) $this->accessToken = $this->get_accessToken();
+    }
+
+    public function validate_oauth_token($name, $next, $prev, $data, $settingContainer){
+        if($name === 'ipro_api_endpoint'){
+            if(
+                $settingContainer::$options['ipro_api_endpoint'] !== $data['ipro_api_endpoint'] ||
+                $settingContainer::$options['ipro_client_id'] !== $data['ipro_client_id'] ||
+                $settingContainer::$options['ipro_client_secret'] !== $data['ipro_client_secret']
+            ){
+                $this->endpoint = $data['ipro_api_endpoint'] ;
+                $this->clientId = $data['ipro_client_id'] ;
+                $this->clientSecret = $data['ipro_client_secret'];
+                $this->get_accessToken();
+            }
+        }
+    }
+
     /**
      *  WP-Cron Job Hook controller
      */
 
     public function ipro_cron_scheduler()
     {
+        $this->initialCredential();
         //Get the Settings
         if(!$this->cronEnabled) return false;
-
-        $this->accessToken = get_transient('ipro_access_token');
-        if (empty($this->accessToken)) $this->accessToken = $this->get_accessToken();
 
         if (empty($this->accessToken)) return false;
 
@@ -139,11 +157,9 @@ class Es_Cron_Job
             );
         }
 
-
         // Response body.
         $body = wp_remote_retrieve_body($response);
-
-        return (!is_wp_error($response)) ? json_decode($body, true) : null;
+        return  json_decode($body, true);
     }
 
     private function get_accessToken()
@@ -174,8 +190,12 @@ class Es_Cron_Job
         // Set the access token
         if (!empty($parseData['access_token'])) {
             set_transient('ipro_access_token', $parseData['access_token'], $parseData['expires_in']);
+            return $parseData['access_token'];
         }
-
+        else {
+            set_transient('ipro_access_token', null, 1000);
+            return false;
+        }
     }
 
     private function fetchRecentUpdates()
@@ -195,9 +215,10 @@ class Es_Cron_Job
     }
 
     private function fetchAllProperties(){
+
         $properties = $this->apiWrapper('properties', array());
 
-        if(isset($properties['Success']) && isset($properties['message'])) {
+        if(isset($properties['Success']) && $properties['Success'] === false && isset($properties['Message'])) {
             $response = array(
                 'status' => 'error',
                 'message' => es_get_notification_markup(
@@ -209,16 +230,27 @@ class Es_Cron_Job
         else if (is_array($properties) && count($properties) > 0) {
             $propertyIDs = array_column($properties, 'Id');
 
-            $response = array(
-                'status' => 'success',
-                'message' => $propertyIDs,
-            );
+            if(count($propertyIDs) > 0) {
+                $response = array(
+                    'status' => 'success',
+                    'message' => $propertyIDs,
+                );
+            }
+            else{
+                $response = array(
+                    'status' => 'error',
+                    'message' => es_get_notification_markup(
+                        __( 'No Property error. Please contact IPRO support.', 'es' ),
+                        'error'
+                    ),
+                );
+            }
         }
         else{
             $response = array(
                 'status' => 'error',
                 'message' => es_get_notification_markup(
-                    __( "Did you configure Ipro API Endpoint exactly? please check it again and try later.", 'es' ),
+                    __( "Did you configure Ipro API Endpoint exactly? Please contact support IPRO team.", 'es' ),
                     'error'
                 ),
             );
@@ -230,6 +262,7 @@ class Es_Cron_Job
     public function setupPropertyDetail($propertyIDs = array ()){
         try{
             if(!is_array($propertyIDs)) throw new Exception('Invalid IDs!');
+
 
             foreach ($propertyIDs as $ID){
                 $propertyDetail = $this->apiWrapper('property', array(
@@ -257,10 +290,10 @@ class Es_Cron_Job
                     //Location
                     if(!empty($propertyDetail['Location']) && is_array($propertyDetail['Location']) && count($propertyDetail['Location']) > 0){
                         $fields['es_type'] = array ($propertyDetail['Location'][0] );
-                        $fields['country'] = $propertyDetail['Location'][1];
-                        $fields['state'] = $propertyDetail['Location'][2];
-                        $fields['province'] = $propertyDetail['Location'][3];
-                        $fields['city'] = $propertyDetail['Location'][4];
+                        if(!empty($propertyDetail['Location'][1])) $fields['country'] = $propertyDetail['Location'][1];
+                        if(!empty($propertyDetail['Location'][2])) $fields['state'] = $propertyDetail['Location'][2];
+                        if(!empty($propertyDetail['Location'][3])) $fields['province'] = $propertyDetail['Location'][3];
+                        if(!empty($propertyDetail['Location'][4])) $fields['city'] = $propertyDetail['Location'][4];
                     }
 
                     if(!empty($propertyDetail['Attributes']['Bathrooms'][0])) $fields['bathrooms'] = $propertyDetail['Attributes']['Bathrooms'][0];
@@ -374,6 +407,7 @@ class Es_Cron_Job
         if ( check_ajax_referer( 'es_save_settings', '_wpnonce', false ) ) {
 
             if ( current_user_can( 'manage_options' ) ) {
+                $this->initialCredential();
 
                 switch ($_POST['step']) {
                     case 'progress':

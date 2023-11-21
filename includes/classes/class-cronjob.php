@@ -207,10 +207,8 @@ class Es_Cron_Job
             return $this->apiWrapper('lastUpdated', array(
                 'time' => round(($currentTime - $lastUpdatedTime) / 60) + 1
             ));
-        } else {
-            update_option('ipro_last_updated_time', $currentTime);
         }
-
+        update_option('ipro_last_updated_time', $currentTime);
         return null;
     }
 

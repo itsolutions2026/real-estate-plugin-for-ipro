@@ -50,6 +50,7 @@
         <label for="es-field-ipro_client_secret">
             <div class="es-field__label">Load Ipro Properties initially.</div>
             <p class="es-field__description">This is used to fetch all properties initially, you need to use this option before enable cron job. Don't refresh page or take any other actions while loading ipro properties initially.</p>
+            <p class="es-field__description">Property images will be imported by cron job. you must enable cron job after loading all properties initially. 25 images per minute by cron job</p>
         </label>
 
         <button class="es-btn es-btn--secondary es-btn--middle js-es-ipro-import">Load Properties</button>
@@ -70,7 +71,7 @@
         'use strict';
 
         $( function() {
-            let loadTimeInterval, idList = [], $button, total, currentStatus = 0, bufferSize = 5;
+            let loadTimeInterval, idList = [], $button, total, currentStatus = 0, bufferSize = 1;
 
             let clear = () => {
                 $button.removeProp( 'disabled' ).removeAttr( 'disabled' );

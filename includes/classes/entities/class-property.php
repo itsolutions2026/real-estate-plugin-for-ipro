@@ -1080,14 +1080,15 @@ class Es_Property extends Es_Post {
      * @param string $field
      * @param mixed $value
      */
-	public function save_field_value( $field, $value ) {
+	public function save_field_value( $field, $value, $queue = false ) {
 
 	    $field_info = static::get_field_info( $field );
 
 	    if ( ! empty( $field_info['type'] ) && 'media' == $field_info['type'] ) {
 	        $media = $this->{$field};
 
-	        if ( ! empty( $media ) ) {
+
+	        if ( ! empty( $media ) && !$queue ) {
 	            foreach ( $media as $attachment_id ) {
                     wp_update_post( array(
                         'ID' => $attachment_id,
@@ -1101,12 +1102,46 @@ class Es_Property extends Es_Post {
 	            $value = array_filter( $value );
 
                 $order = 0;
+                $new_urls = array();
+
+                $gallery_images_urls_string = get_post_meta($this->get_id(), 'es_attachment_urls', true);
+
+                if(!empty($gallery_images_urls_string)){
+                    $gallery_images_urls = json_decode($gallery_images_urls_string, true);
+                }else{
+                    $gallery_images_urls = array();
+                }
+
+                $valid_imageURLs = array();
+                foreach ($gallery_images_urls as $key => $image_url){
+                    $post_id = (int)str_replace('es_', '', $key);
+                    if ( !empty(get_post_status( $post_id ) )) {
+                        $valid_imageURLs[$key] = $image_url;
+                    }
+                }
+
+                $gallery_images_urls = $valid_imageURLs;
+
+
 	            foreach ( $value as $key => $attachment_id ) {
+	                $url = '';
 	                if ( filter_var( $attachment_id , FILTER_VALIDATE_URL ) !== false ) {
-	                    $attachment_id = es_upload_file_by_url( $attachment_id, $this->get_id() );
+	                    $existed = false;
+	                    foreach (array_merge($new_urls, $gallery_images_urls) as $key => $image_url){
+                            if($image_url === $attachment_id){
+                                $existed = true;
+                                $attachment_id = (int)str_replace('es_', '', $key);
+                                break;
+                            }
+                        }
+	                    if(!$existed){
+                            $url = $attachment_id;
+                            $attachment_id = es_upload_file_by_url( $attachment_id, $this->get_id() );
+                        }
                     }
 
 	                if ( ! is_wp_error( $attachment_id ) ) {
+
 	                    $value[ $key ] = $attachment_id;
 
                         wp_update_post( array(
@@ -1116,7 +1151,19 @@ class Es_Property extends Es_Post {
 
                         update_post_meta( $attachment_id, 'es_attachment_order', $order++ );
                         update_post_meta( $attachment_id, 'es_attachment_type', $field );
+
+                        if(!empty($url)) $new_urls['es_'.$attachment_id] = $url;
+
                     }
+                }
+
+
+                if(is_array($gallery_images_urls) && count($new_urls) > 0){
+
+                    $gallery_images_urls = array_merge($valid_imageURLs, $new_urls);
+                    $gallery_images_urls_string = json_encode($gallery_images_urls, 1);
+
+                    update_post_meta( $this->get_id(), 'es_attachment_urls', $gallery_images_urls_string );
                 }
             }
 

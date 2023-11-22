@@ -913,18 +913,18 @@ add_filter( 'sanitize_title', 'es_sanitize_title_intl', 8 );
 /**
  * @param $plugin
  */
-function es_demo_content_redirect( $plugin ) {
-	$page = filter_input( INPUT_GET, 'page' );
-	if ( $plugin == ES_PLUGIN_BASENAME && $page != 'tgmpa-install-plugins' ) {
-		$checked = ! empty( $_POST['checked'] ) ? $_POST['checked'] : array();
-        if ( es_need_migration() ) {
-	        exit ( wp_redirect( 'admin.php?page=es_migration' ) );
-        } else if ( ! es_is_demo_executed() && count( $checked ) <=1 ) {
-			exit ( wp_redirect( 'admin.php?page=es_demo' ) );
-		}
-	}
-}
-add_action( 'activated_plugin', 'es_demo_content_redirect' );
+//function es_demo_content_redirect( $plugin ) {
+//	$page = filter_input( INPUT_GET, 'page' );
+//	if ( $plugin == ES_PLUGIN_BASENAME && $page != 'tgmpa-install-plugins' ) {
+//		$checked = ! empty( $_POST['checked'] ) ? $_POST['checked'] : array();
+//        if ( es_need_migration() ) {
+//	        exit ( wp_redirect( 'admin.php?page=es_migration' ) );
+//        } else if ( ! es_is_demo_executed() && count( $checked ) <=1 ) {
+//			exit ( wp_redirect( 'admin.php?page=es_demo' ) );
+//		}
+//	}
+//}
+//add_action( 'activated_plugin', 'es_demo_content_redirect' );
 
 /**
  * WP Multilang Support.

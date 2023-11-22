@@ -14,13 +14,13 @@ class Es_Cron_Job
 
     private $endpointRouters = array(
         'lastUpdated' => array(
-            'endpoint' => 'apis/properties/lastupdated?lastUpdated=time',
+            'endpoint' => '/apis/properties/lastupdated?lastUpdated=time',
         ),
         'property' => array(
-            'endpoint' => 'apis/property/propertyId',
+            'endpoint' => '/apis/property/propertyId',
         ),
         'properties' => array (
-            'endpoint' => 'apis/properties'
+            'endpoint' => '/apis/properties'
         )
     );
 
@@ -46,8 +46,9 @@ class Es_Cron_Job
         add_action('init', array($this, 'schedule_ipro'));
         add_filter('cron_schedules', array($this, 'add_wp_cron_schedule'));
         add_action('ipro_cron_scheduler', array($this, 'ipro_cron_scheduler'));
-        add_action( 'wp_ajax_es_ipro_load_properties', array( $this, 'ajax_load_properties' ) );
-        add_action( 'es_settings_save', array( $this, 'validate_oauth_token' ), 10 ,5);
+        add_action('ipro_cron_scheduler_for_images_queue', array($this, 'ipro_cron_scheduler_for_images_queue'));
+        add_action('wp_ajax_es_ipro_load_properties', array( $this, 'ajax_load_properties' ) );
+        add_action('es_settings_save', array( $this, 'validate_oauth_token' ), 10 ,5);
     }
 
     /**
@@ -57,6 +58,9 @@ class Es_Cron_Job
     {
         if (!wp_next_scheduled('ipro_cron_scheduler')) {
             wp_schedule_event(time(), 'ipro_timeInterval', 'ipro_cron_scheduler');
+        }
+        if (!wp_next_scheduled('ipro_cron_scheduler_for_images_queue')) {
+            wp_schedule_event(time(), 'ipro_timeInterval_for_images', 'ipro_cron_scheduler_for_images_queue');
         }
     }
 
@@ -71,6 +75,10 @@ class Es_Cron_Job
         $schedules['ipro_timeInterval'] = array(
             'interval' => 60, // in seconds
             'display' => __('Ipro Time Interval', 'ipro'),
+        );
+        $schedules['ipro_timeInterval_for_images'] = array(
+            'interval' => 60, // in seconds
+            'display' => __('Ipro Time Interval For Images', 'ipro'),
         );
         return $schedules;
     }
@@ -120,6 +128,53 @@ class Es_Cron_Job
             $propertyIDs= array_column($recentUpdatedProperties,'PropertyId');
             $this->setupPropertyDetail($propertyIDs);
         }
+    }
+
+
+    /**
+     * WP -Cron JOb Hook for Images in queue
+     */
+
+    public function ipro_cron_scheduler_for_images_queue(){
+        $this->initialCredential();
+        $queue_process_limit = 25;
+        //Get the Settings
+
+
+        if(!$this->cronEnabled) return false;
+        if (empty($this->accessToken)) return false;
+        $properties = es_search_properties_by_meta('1', 'queued_image_urls_status');
+
+        $image_Urls = array();
+        foreach ($properties as $property){
+            $propertyId = $property->ID;
+            if($queue_process_limit < 1) break;
+            if(!empty($propertyId)){
+                $property_images = get_post_meta($propertyId, 'queued_image_urls', true);
+                if(!empty($property_images) && is_array($property_images)){
+                    $length = count($property_images);
+
+                    if($length > $queue_process_limit) {
+                        $new_property_images = array_slice($property_images, $queue_process_limit);
+                        update_post_meta($propertyId, 'queued_image_urls', $new_property_images);
+                        $image_Urls[$propertyId] = array_slice($property_images, 0, $queue_process_limit);
+                        $queue_process_limit = 0;
+                    } else{
+                        update_post_meta($propertyId, 'queued_image_urls_status', false);
+                        update_post_meta($propertyId, 'queued_image_urls', array());
+                        $image_Urls[$propertyId] = $property_images;
+                        $queue_process_limit = $queue_process_limit - $length;
+                    }
+
+                }
+            }
+        }
+
+        foreach($image_Urls as $propertyId => $images){
+            $property = es_get_property( $propertyId );
+            $property->save_field_value( 'gallery',  $images, true);
+        }
+
     }
 
     /**
@@ -178,7 +233,7 @@ class Es_Cron_Job
         );
 
         $response = wp_remote_post(
-            $this->endpoint . 'oauth/2.0/token',
+            $this->endpoint . '/oauth/2.0/token',
             $args
         );
 
@@ -272,10 +327,6 @@ class Es_Cron_Job
                     $fields = array();
 
                     $fields['ipro_Id'] = $propertyDetail['Id'];
-
-                    if(is_array($propertyDetail['Images']) && count($propertyDetail['Images'])){
-                        $fields['gallery'] = array_column($propertyDetail['Images'], 'Source');
-                    }
 
                     if(!empty($propertyDetail['GeoLocation'])){
                         $geolocation = explode(",",$propertyDetail['GeoLocation'], 2);
@@ -381,6 +432,12 @@ class Es_Cron_Job
                     if ( ! is_wp_error( $post_id ) ) {
                         $property = es_get_property( $post_id );
                         $property->save_fields( $data['fields'] );
+
+                        if(is_array($propertyDetail['Images']) && count($propertyDetail['Images'])) {
+                            $gallery = array_column($propertyDetail['Images'], 'Source');
+                            update_post_meta($post_id, 'queued_image_urls', $gallery);
+                            update_post_meta($post_id, 'queued_image_urls_status', true);
+                        }
                     }
                 }
             }

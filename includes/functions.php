@@ -427,6 +427,29 @@ if( !function_exists('es_search_property_by_meta')) {
     }
 }
 
+if( !function_exists('es_search_properties_by_meta')) {
+    /**
+     * return WP Post ID
+     *
+     * @param $meta_value
+     * @param $meta_field string
+     * @return array
+     */
+    function es_search_properties_by_meta($meta_value, $meta_field){
+        $args = array(
+            'post_type' => 'properties',
+            'meta_key' => $meta_field,
+            'meta_value' => $meta_value,
+            'meta_compare' => '='
+        );
+
+        $posts = get_posts($args);
+        if(is_array($posts)) return $posts;
+
+        return null;
+    }
+}
+
 
 
 if ( ! function_exists( 'es_search_get_field_config' ) ) {

@@ -84,6 +84,7 @@ class Ipro {
 			'data-manager-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-data-manager-page.php',
 			'entities-archive-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-entities-archive-page.php',
 			'properties-archive-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-properties-archive-page.php',
+            'demo-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-demo-page.php',
 			'migration-page' => ES_PLUGIN_CLASSES . DS . 'pages' . DS . 'admin' . DS . 'class-migration-page.php',
 
             ES_PLUGIN_CLASSES . DS . 'helpers' . DS . 'interface-container.php',

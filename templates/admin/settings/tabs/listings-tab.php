@@ -66,6 +66,11 @@ es_settings_field_render( 'is_lightbox_disabled', array(
 	'type' => 'switcher',
 ) );
 
+es_settings_field_render( 'override_single_post_template', array(
+    'label' => __( 'Override theme Single Post template', 'es' ),
+    'type' => 'switcher',
+) );
+
 
 
 if ( $fonts = es_get_google_fonts() ) {

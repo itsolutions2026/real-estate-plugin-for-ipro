@@ -1017,6 +1017,10 @@ class Es_Settings_Container
 					'default_value' => false,
 				),
 
+				'override_single_post_template' => array(
+                    'default_value' => false,
+                ),
+
 				'is_download_font' => array(
 					'default_value' => true,
 				),

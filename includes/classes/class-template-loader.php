@@ -84,6 +84,15 @@ class Es_Template_Loader {
 	public static function single_content_filter( $content ) {
 		$entity = es_get_entity_by_id( get_the_ID() );
 
+        if ( ests('override_single_post_template')){
+            if ( $entity ) {
+                $shortcode = es_get_shortcode_instance(
+                    sprintf( 'es_single_%s', $entity::get_entity_name() ), array( 'id' => get_the_ID() ) );
+
+                return $shortcode->get_content();
+            }
+        }
+
 		if ( static::$single_divi_template ) {
 			if ( et_builder_is_enabled( get_the_ID() ) ) {
 				return $content;

@@ -68,8 +68,21 @@ class Es_Admin_Menu {
 			)
 		);
 
+        $menu_pages['demo'] = array(
+            'args' => array(
+                $parent,
+                __( 'Demo content', 'es' ),
+                __( 'Demo content', 'es' ),
+                'manage_options',
+                'es_demo',
+                array( 'Es_Demo_Page', 'render' )
+            ),
+            'callback' => 'add_submenu_page',
+        );
 
-		$menu_pages = apply_filters( 'es_register_admin_pages_args', $menu_pages );
+
+
+        $menu_pages = apply_filters( 'es_register_admin_pages_args', $menu_pages );
 
 		if ( ! empty( $menu_pages ) ) {
 			foreach ( $menu_pages as $menu_page ) {
